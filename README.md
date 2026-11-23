@@ -1,26 +1,61 @@
-# ClinicSense MCP server
+# ClinicSense API integration and MCP server: connect ClinicSense to ChatGPT, Claude and any AI agent
 
-Connect ClinicSense to ChatGPT, Claude and any AI agent through Cotlet.dev. Manage scheduling, wait lists, payments, reports and client emails in your signed-in ClinicSense account. The hosted integration excludes charting, SOAP notes, intake forms and client files. Write calls ask for approval by default.
+ClinicSense API integration and MCP server, unofficial, by Cotlet. Your AI works in your own signed-in ClinicSense account: appointments, clients, intake forms, SOAP notes, packages, payments and reports, on the same screens your login opens. No developer and no ClinicSense API key needed. Cotlet is independent and is not affiliated with ClinicSense.
 
-## What you can ask
+**Does ClinicSense have an API or an MCP server?** ClinicSense has no public API and no Zapier, Make or Pipedream app (checked 23 Nov 2026). Its built-in connections are Square payments, Google Calendar sync, TELUS Health eClaims in Canada and Google review requests. ClinicSense has no MCP server and no ChatGPT or Claude app.
 
-> Find clients on the wait list for tomorrow's cancelled slot.
+## What massage therapists and wellness clinic owners ask their AI to do in ClinicSense
 
-> Show tomorrow's appointments for the whole team.
+| Job | Ask your AI | Make it repeat |
+|---|---|---|
+| SOAP note drafts | "Turn my shorthand for today's 2 pm client into a SOAP note draft. I review it before it is saved." | After each session |
+| Clients to rebook | "Find clients I have not seen in 60 days and draft a rebooking email to each. Send nothing yet." | Weekly |
+| Open slots this week | "List my open slots this week and draft a short email offering them to clients who like those times." | Weekly |
+| Income by service and practitioner | "Build last month's income by service and by practitioner, with tips and package sales." | Monthly |
+| Payments for your accountant | "Export last month's payments and tax totals to a spreadsheet for my accountant." | Monthly |
+| Where bookings came from | "List this month's online bookings with the page or campaign each one came from." | Monthly |
+| No-shows and late cancels | "List this week's no-shows and late cancellations with the fee that applies, and draft a note to each client." | Weekly |
+| Appointments in a spreadsheet | "Put each week's appointments and payments in my Google Sheet." | Your own endpoint, called from Google Sheets |
+| Import from MassageBook or Vagaro | "Import the clients in this MassageBook export into ClinicSense. Show me before you save." | Once |
+| Leaving ClinicSense | "Export all my clients, appointments and treatment notes before I move to another app." | Once |
 
-> Run the revenue report for last month.
+Your AI asks you before it emails or texts a client, saves a note or changes anything. Payments stay in your hands: Cotlet refuses payments.
+
+## Your own ClinicSense API, built with Cotlet
+
+ClinicSense gives you no API and no Zapier app. With Cotlet you build your own: your AI does the job once in your Cloud Browser, you save it as an endpoint, and you call it from Google Sheets, QuickBooks, Mailchimp, Zapier, Make, n8n, your own code.
+
+Examples you can build in a few minutes (none of them exists until you build it):
+
+| Endpoint you build | What it returns or does |
+|---|---|
+| `appointments-for-week` | appointments for a week with client, service and practitioner |
+| `open-slots` | free slots per practitioner for the days you name |
+| `lapsed-clients` | clients with no visit for the days you name, with their last service |
+| `income-for-period` | income by service and practitioner, with tips and package sales |
+| `no-shows` | no-shows and late cancellations in a period |
+| `add-client` | adds a client with phone, email and a note (writes only after you allow it) |
+
+Call it with your Cotlet API key, JSON in and JSON out:
+
+```bash
+curl -X POST https://cotlet.dev/api/v1/custom/appointments-for-week \
+  -H "Authorization: Bearer $COTLET_API_KEY" -H "Content-Type: application/json" -d '{}'
+```
+
+Limits: one call runs up to 90 seconds, writes wait for your consent, payments are blocked. Start here: https://cotlet.dev/app/custom-api/new?app=clinicsense
 
 ## Connect in 2 minutes
 
-Get your API key at https://cotlet.dev/app and export it as `COTLET_API_KEY`.
-
-### ChatGPT
-
-Settings → Apps & Connectors → Create, connector URL `https://cotlet.dev/mcp/v1/connect`, then sign in with Cotlet.dev. No API key needed.
+Sign up at https://cotlet.dev, sign in to ClinicSense once in your Cloud Browser, then add Cotlet to your AI.
 
 ### Claude
 
-Settings > Connectors > Add custom connector, URL `https://cotlet.dev/mcp/v1/connect`, then sign in with Cotlet.dev.
+Settings → Connectors → Add custom connector, paste `https://cotlet.dev/mcp/v1` and sign in with Cotlet.dev.
+
+### ChatGPT
+
+Open Plugins in ChatGPT, choose Create as a plugin, paste `https://cotlet.dev/mcp/v1` and sign in with Cotlet.dev. No API key needed.
 
 ### Claude Code
 
@@ -78,49 +113,41 @@ python3 clinicsense_agent.py tools     # list Cotlet.dev tools
 python3 clinicsense_agent.py serve     # start the stdio MCP server (same as no argument)
 ```
 
-## Questions from ClinicSense users
+## Questions from ClinicSense therapists
+**Does ClinicSense have an API or a Zapier app?**
 
-**Can the agent read SOAP notes or intake forms?**
+No. ClinicSense has no public API and no Zapier, Make or Pipedream app (checked 23 Nov 2026). With Cotlet you build your own endpoints in your signed-in ClinicSense account and call them from Google Sheets, Zapier, Make or n8n.
 
-The hosted ClinicSense tools exclude charting, SOAP notes, intake and consent forms, client files and TELUS eClaims. They cover scheduling, payments, reports and client emails.
+**Can ChatGPT or Claude write my ClinicSense SOAP notes?**
 
-**Which ClinicSense plan do I need?**
+Your AI turns your shorthand or voice memo into a SOAP note draft for the client you name. You read it and it is saved in ClinicSense only after your OK.
 
-Your ClinicSense plan must include the feature you use. A tool cannot add features outside your plan.
+**Can an AI agent rebook clients I have not seen in a while?**
 
-**Is this affiliated with ClinicSense?**
+Yes. It lists clients with no visit for the days you choose and drafts a rebooking email to each. Nothing goes out until you say yes.
 
-No. Cotlet.dev is unofficial, independent and not affiliated with ClinicSense.
+**How do I get ClinicSense payments into QuickBooks?**
 
-## Learn more
+ClinicSense names no QuickBooks integration. Your AI exports the month's payments and tax totals to a spreadsheet for your accountant or a QuickBooks import.
 
-- [ClinicSense integration and hosted tools](https://cotlet.dev/integrations/clinicsense-api-mcp-server)
+**How do I see which ad or page brought a ClinicSense booking?**
 
----
+Your AI lists the month's online bookings with the page or campaign each came from, as far as your ClinicSense screens show it.
 
-More: https://cotlet.dev/integrations/clinicsense-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=clinicsense
+**How do I export everything from ClinicSense before I leave?**
 
-Request access: https://cotlet.dev/signup?app=clinicsense&utm_source=github&utm_medium=readme&utm_campaign=clinicsense
+Your AI exports clients, appointments and treatment notes from the screens your login opens, so you keep your records when you switch.
 
-## Workflows on the hosted integration
+## Find it on
 
-The live integration page documents these 16 operations:
+- [ClinicSense MCP server on Cotlet.dev](https://cotlet.dev/integrations/clinicsense-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
+- [ClinicSense API with Cotlet](https://cotlet.dev/integrations/api/clinicsense?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
+- [Does ClinicSense have an API or MCP server?](https://cotlet.dev/api-mcp-status/clinicsense?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
+- [PyPI package clinicsense-mcp](https://pypi.org/project/clinicsense-mcp/)
 
-- `list_appointments`
-- `manage_appointments`
-- `configure_online_booking`
-- `configure_reminders`
-- `configure_no_show_guard`
-- `manage_wait_list`
-- `manage_invoices`
-- `manage_packages`
-- `manage_gift_certificates`
-- `run_financial_report`
-- `send_newsletter`
-- `configure_availability_summary`
-- `configure_wellness_check_in`
-- `manage_feedback`
-- `configure_referral_email`
-- `configure_birthday_email`
+## More massage and wellness apps on Cotlet
 
-The local stdio adapter exposes seven browser helpers listed above. These helpers forward to Cotlet.dev; the workflow operations are documented on the hosted integration page.
+- [Jane MCP](https://github.com/cotlet-connect/jane-app-mcp)
+- [Zanda MCP](https://github.com/cotlet-connect/zanda-mcp)
+- [GlossGenius MCP](https://github.com/cotlet-connect/glossgenius-mcp)
+- [Mangomint MCP](https://github.com/cotlet-connect/mangomint-mcp)
