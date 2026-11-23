@@ -143,7 +143,6 @@ Your AI exports clients, appointments and treatment notes from the screens your 
 - [ClinicSense MCP server on Cotlet.dev](https://cotlet.dev/integrations/clinicsense-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
 - [ClinicSense API with Cotlet](https://cotlet.dev/integrations/api/clinicsense?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
 - [Does ClinicSense have an API or MCP server?](https://cotlet.dev/api-mcp-status/clinicsense?utm_source=github&utm_medium=readme&utm_campaign=clinicsense&utm_content=find)
-- [PyPI package clinicsense-mcp](https://pypi.org/project/clinicsense-mcp/)
 
 ## More massage and wellness apps on Cotlet
 
