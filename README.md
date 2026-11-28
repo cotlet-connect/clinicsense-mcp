@@ -113,6 +113,150 @@ python3 clinicsense_agent.py tools     # list Cotlet.dev tools
 python3 clinicsense_agent.py serve     # start the stdio MCP server (same as no argument)
 ```
 
+## What you can ask your AI to do in ClinicSense
+
+These are real jobs ClinicSense users asked about. Cotlet lets ChatGPT, Claude or any MCP client do them in your own signed-in ClinicSense account.
+
+### Clients and open slots
+
+#### Can an AI agent find ClinicSense clients I have not seen in 60 days and send them a rebooking email?
+
+Yes. With Cotlet, your agent reads the Clients and Calendar screens in your signed-in ClinicSense account, lists clients with no visit in 60 days and no next appointment, and drafts a rebooking email for each. Nothing is sent until you say yes.
+
+Ask your agent: "List ClinicSense clients with no visit in 60 days and no next appointment. Draft a short rebooking email for each one."
+
+As an API endpoint: Yes. Save the lapsed-client list as an endpoint in Cotlet and call it every month from n8n, Make or Zapier.
+
+#### Can an AI agent watch my ClinicSense calendar, spot open slots this week and offer them to the right clients?
+
+Partly. ClinicSense can share your upcoming availability by email on its own, under Communication. With Cotlet, your agent reads this week's open slots and drafts a note to the clients who usually book that time. Nothing is sent until you say yes.
+
+Ask your agent: "Find my open ClinicSense slots this week and draft a short email offering them to clients who usually book at those times."
+
+As an API endpoint: Yes. Save the open-slot check as an endpoint in Cotlet and call it every Sunday from n8n, Make or Zapier.
+
+#### Can an AI agent block a problem client in ClinicSense and catch the same person booking again under a new name?
+
+Partly. ClinicSense has No-Show Guard on each client, under More Options, to stop online booking or require a card. It does not match a new name to an old client. With Cotlet, your agent checks new bookings against the clients you blocked by phone, email and address. Nothing changes until you say yes.
+
+Ask your agent: "Block this client from online booking in ClinicSense, then check this week's new bookings for the same phone number, email or address."
+
+### Notes and intake forms
+
+#### Can ChatGPT or Claude write my SOAP notes for a ClinicSense client from my voice memo or shorthand?
+
+Yes. ClinicSense's own AI features are optional and can draft notes. With Cotlet, ChatGPT or Claude turns your shorthand or memo text into a SOAP note draft and enters it in the client's Treatment notes. Nothing is saved until you say yes.
+
+Ask your agent: "Turn these shorthand session notes into a SOAP note draft for Zoe R. in ClinicSense. Show me the draft before you save it."
+
+#### How do I make ClinicSense send the right intake form automatically for each service, for example lymphatic drainage?
+
+Yes. ClinicSense sends forms automatically per service from Setup, then Form Builder, then Options. With Cotlet, your agent goes through your services and sets the right form on each one, for example a lymphatic drainage form. Nothing changes until you say yes.
+
+Ask your agent: "List my ClinicSense services and which form each sends automatically. Propose the lymphatic drainage form for that service and show me before you change it."
+
+### Money and reports
+
+#### Can an AI agent build a monthly income report by service and by practitioner from ClinicSense and tell me why it does not match my bank?
+
+Partly. ClinicSense's Reports include Revenue, Payments and Receivables. With Cotlet, your agent builds one table by service and practitioner and compares the payments with the bank list you give it, then lists the amounts that differ. You confirm the reason for each.
+
+Ask your agent: "Build last month's ClinicSense income by service and by practitioner, then compare the payments with this bank list and list every amount that differs."
+
+As an API endpoint: Yes. Save the income table as an endpoint in Cotlet and call it on the first of each month from n8n, Make or a script.
+
+#### How do I export a monthly payments and tax report from ClinicSense for my accountant?
+
+Yes. ClinicSense has Payments and Sales Tax reports under Reports. With Cotlet, your agent runs both for the month you name and gives you the figures as one file or sheet your accountant can open.
+
+Ask your agent: "Run the ClinicSense Payments and Sales Tax reports for last month and give me one CSV my accountant can open."
+
+As an API endpoint: Yes. Save the monthly run as an endpoint in Cotlet and call it from n8n, Make or Zapier on the first of each month.
+
+#### How do I connect ClinicSense to QuickBooks so my payments and income land in my books without retyping?
+
+Yes. ClinicSense's help names no QuickBooks connection. With Cotlet, your agent reads the month's payments in ClinicSense and enters the matching income in QuickBooks, both signed in in your Cloud Browser. Nothing is entered until you say yes.
+
+Ask your agent: "Take last month's ClinicSense payments and enter them as income in QuickBooks. Show me the list before you enter anything."
+
+As an API endpoint: Yes. Save the payment read as an endpoint in Cotlet that returns JSON, and pass it to QuickBooks from n8n or Make each week.
+
+#### Can an AI agent chase my no-shows and late cancellations and add the fee in ClinicSense?
+
+Yes. With Cotlet, your agent lists the no-shows and late cancellations in your ClinicSense calendar, drafts a message to each client and adds the fee on the appointment's invoice. Cotlet does not charge cards, and nothing is sent or added until you say yes.
+
+Ask your agent: "List last week's ClinicSense no-shows and late cancellations, draft a message to each client and propose the fee for each invoice."
+
+#### How do I sell a monthly membership in ClinicSense that charges the client automatically?
+
+Not on its own. ClinicSense's help centre has no membership article. It has Treatment Packages and Gift Certificates under Sell. Cotlet does not take payments, so an automatic monthly charge has to come from elsewhere. Nothing is created until you say yes.
+
+Ask your agent: "Create a ClinicSense treatment package called Monthly Massage with 1 session of 60 minutes. Show me the settings before you save it."
+
+#### How do I fix gift card and online booking checkouts that spin for my clients in ClinicSense, and automate gift card sales?
+
+Not on its own. Cotlet cannot repair a checkout that spins, and the help centre sends you to ClinicSense support for that. With Cotlet, your agent reads the Gift Certificates screen and lists what was sold, so you see which sales went through.
+
+Ask your agent: "List the gift certificates sold in ClinicSense this month with buyer, amount and whether each has been used."
+
+As an API endpoint: Yes. Save the gift certificate list as an endpoint in Cotlet and call it every week from n8n, Make or Zapier.
+
+### Marketing and leads
+
+#### How do I send my ClinicSense clients to a Mailchimp list and keep it updated?
+
+Yes. ClinicSense sends its own email newsletters under Communication and has no Mailchimp connection. With Cotlet, your agent reads your clients in ClinicSense and adds new ones to your Mailchimp audience, both signed in in your Cloud Browser. Nothing is added until you say yes.
+
+Ask your agent: "Add every ClinicSense client created this month to my Mailchimp audience with name and email. Show me the list first."
+
+As an API endpoint: Yes. Save the new-client read as an endpoint in Cotlet and call it every week from n8n or Make to update Mailchimp.
+
+#### How do I get a Google Book now button on my Google Business listing that books into my ClinicSense calendar?
+
+Partly. ClinicSense gives you an online booking page and an embed for your website. With Cotlet, your agent can add that booking link to your Google Business Profile, signed in in the same Cloud Browser. Whether Google shows a Book now button is up to Google. Nothing changes until you say yes.
+
+Ask your agent: "Add my ClinicSense online booking link to my Google Business Profile as the booking link. Show me the change before you save it."
+
+#### My Facebook ad sends people to my ClinicSense booking page. How do I see which ad produced a booking?
+
+Partly. ClinicSense's Reports have no ad or booking source page. With Cotlet, your agent reads the month's new online bookings in ClinicSense and your results in Facebook Ads Manager, signed in in the same Cloud Browser, and lines them up by date, as far as the screens show.
+
+Ask your agent: "List this month's new online bookings in ClinicSense and line them up by date with my Facebook ad results, so I can see which ad likely brought each one."
+
+#### How do I connect an AI voice receptionist or an AI note scribe to ClinicSense?
+
+Not on its own. ClinicSense's help centre shows no API, and third parties sell their own scribe and voice receptionist for it. Cotlet is not a voice receptionist or a scribe. With Cotlet, your agent can book what a call summary asks for and add the note. Nothing changes until you say yes.
+
+Ask your agent: "Read this call summary, book the appointment it asks for in ClinicSense and add the note to the client's file. Show me before you save."
+
+#### Can I get two-way texting with my clients on top of ClinicSense reminders, for example through a separate business number?
+
+Not on its own. ClinicSense sends reminders, and its help centre shows no two-way text inbox. Cotlet does not send or receive texts itself. With Cotlet, your agent can read replies in the web inbox of your separate number and update the ClinicSense calendar. Nothing changes until you say yes.
+
+Ask your agent: "Read today's replies in my business number's web inbox and list which clients want to move or cancel a ClinicSense appointment."
+
+### Sheets, exports and imports
+
+#### How do I get my ClinicSense appointments and payments into Google Sheets every week?
+
+Yes. ClinicSense has no Zapier app. With Cotlet, your agent reads the week's appointments and payments from Reports in your signed-in account and adds them as rows to your Google Sheet. Nothing is added until you say yes.
+
+Ask your agent: "Add this week's ClinicSense appointments and payments to my Google Sheet, one row each with client, service, practitioner and amount."
+
+As an API endpoint: Yes. Save the weekly read as an endpoint in Cotlet and call it every Friday from n8n, Make or Zapier to fill the sheet or send a phone message.
+
+#### How do I export all my clients, appointments and treatment notes from ClinicSense when I want to leave?
+
+Partly. ClinicSense's Export Client List, on the Clients screen, gives the client list only. With Cotlet, your agent goes through appointments, invoices and treatment notes in your signed-in account and saves each as a file you keep.
+
+Ask your agent: "Save every ClinicSense client, past appointment, invoice and treatment note to separate files before I cancel my plan."
+
+#### How do I import my client list from MassageBook or Vagaro into ClinicSense without retyping each person?
+
+Partly. ClinicSense has import guides for MassageBook, Vagaro and others, but it is not self-serve: you email your client list file to support. With Cotlet, your agent can add the clients one by one in ClinicSense from your file. Nothing is created until you say yes.
+
+Ask your agent: "Take the clients in this file and add each one to ClinicSense with name, phone and email. Show me the first five before you start."
+
 ## Questions from ClinicSense therapists
 **Does ClinicSense have an API or a Zapier app?**
 
